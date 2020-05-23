@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 data/
-saved_files/
+saved_models/
