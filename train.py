@@ -59,8 +59,9 @@ for i in range(len(unique_words)):
     if embedding_vector is not None:
         embedding_matrix[i] = embedding_vector
 
-model = Sequential()
 e = Embedding(len(unique_words), 50, weights=[embedding_matrix], input_length=SEQUENCE_LENGTH, trainable=False)
+
+model = Sequential()
 model.add(e)
 model.add(LSTM(256))
 model.add(Dense(len(unique_words)))
@@ -73,7 +74,10 @@ optimizer = RMSprop(lr=0.01)
 model.compile(loss='categorical_crossentropy',
               optimizer=optimizer, metrics=['accuracy'])
 
-history = model.fit(X, Y, epochs=120, shuffle=True).history
+history = model.fit(X, Y, validation_split=0.05,
+                    batch_size=128, epochs=120, shuffle=True).history
+
+print(history)
 
 model.save('saved_models/word_prediction.h5')
 pickle.dump(history, open("saved_models/history.p", "wb"))

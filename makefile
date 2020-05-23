@@ -4,5 +4,5 @@ corpus:
 	tar -xvzf ./data/fapesp-corpora/corpora/pt.tgz -C data/fapesp-corpora/corpora/
 	python prepare_corpus.py
 embeddings:
-	wget -P ./data/ "http://143.107.183.175:22980/download.php?file=embeddings/glove/glove_s50.zip" -O glove_s50.zip
+	wget -P ./data/ "http://143.107.183.175:22980/download.php?file=embeddings/glove/glove_s50.zip" -O ./data/glove_s50.zip
 	unzip ./data/glove_s50.zip -d ./data
